@@ -3,6 +3,6 @@ const { UserRouter } = require("./modules/user/user.routes");
 
 const mainRouter = Router();
 
-mainRouter.use("/send-details", UserRouter);
+mainRouter.use("/api/send-details", UserRouter);
 
 module.exports = mainRouter;
