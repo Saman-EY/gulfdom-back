@@ -10,7 +10,7 @@ class UserService {
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT),
-      secure: true, // usually true for port 465
+      secure: false, // usually true for port 465
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
@@ -19,11 +19,11 @@ class UserService {
 
     // Compose the email
     const mailOptions = {
-      from: `GulfDom User`,
+      from: `"GulfDom No-Reply"`,
       to: process.env.SMTP_USER, // your email
       subject: "New Form Submission",
       html: `
-        <h3>User Details</h3>
+        <h3>GulfDom New User Details</h3>
         <p><strong>User FullName:</strong> ${fullname}</p>
         <p><strong>User Phone Number:</strong> ${phone}</p>
       `,
