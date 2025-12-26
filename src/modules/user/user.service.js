@@ -1,14 +1,12 @@
 const autoBind = require("auto-bind");
-
 const nodemailer = require("nodemailer");
-
 
 class UserService {
   constructor() {
     autoBind(this);
   }
 
-  async sendDetails({ name,  phone }) {
+  async sendDetails({ fullname, phone }) {
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT),
@@ -21,20 +19,20 @@ class UserService {
 
     // Compose the email
     const mailOptions = {
-      from: `"Website Form" <${process.env.SMTP_USER}>`,
+      from: `GulfDom User`,
       to: process.env.SMTP_USER, // your email
       subject: "New Form Submission",
       html: `
         <h3>User Details</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>User FullName:</strong> ${fullname}</p>
+        <p><strong>User Phone Number:</strong> ${phone}</p>
       `,
     };
 
     // Send the email
     try {
       const info = await transporter.sendMail(mailOptions);
-      return { info, success: true };
+      return { info };
     } catch (error) {
       console.error("Email sending error:", error);
       throw error;
