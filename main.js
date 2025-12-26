@@ -15,13 +15,13 @@ async function main() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
-  app.use(
-    cors({
-      origin: "https://your-frontend-domain.com",
-      methods: ["GET", "POST"],
-      credentials: true,
-    })
-  );
+  // app.use(
+  //   cors({
+  //     origin: "https://your-frontend-domain.com",
+  //     methods: ["GET", "POST"],
+  //     credentials: true,
+  //   })
+  // );
 
   app.use(mainRouter);
 
