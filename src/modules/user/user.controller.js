@@ -10,9 +10,8 @@ class UserController {
   async sendDetails(req, res, next) {
     try {
       const { fullname, phone } = req.body;
-      console.log(fullname, phone);
-      const result = await this.#service.sendDetails({ fullname, phone });
       // return res.json({ data: { fullname, phone }, message: "testing" });
+      const result = await this.#service.sendDetails({ fullname, phone });
       return res.json({ data: result, message: UserMessage.Success });
     } catch (error) {
       next(error);
