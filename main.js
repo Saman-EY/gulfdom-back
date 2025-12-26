@@ -15,13 +15,24 @@ async function main() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
-  // app.use(
-  //   cors({
-  //     origin: "https://your-frontend-domain.com",
-  //     methods: ["GET", "POST"],
-  //     credentials: true,
-  //   })
-  // );
+  const allowedOrigins = ["http://localhost:3001", "http://localhost:3000", "https://gulfdom.ru/"];
+
+  app.use(
+    cors({
+      origin: (origin, callback) => {
+        // allow server-to-server or Postman
+        if (!origin) return callback(null, true);
+
+        if (allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error("Not allowed by CORS"));
+        }
+      },
+      methods: ["GET", "POST"],
+      credentials: true,
+    })
+  );
 
   app.use(mainRouter);
 
