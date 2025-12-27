@@ -4,6 +4,7 @@ const mainRouter = require("./src/app.routes");
 const NotFoundHandler = require("./src/common/exception/not-found.handler");
 const AllExceptionHandler = require("./src/common/exception/all-exception.handler");
 const cors = require("cors");
+const { rateLimiter } = require("./src/common/middlewares/rateLimiter");
 
 dotenv.config();
 
@@ -33,6 +34,8 @@ async function main() {
       credentials: true,
     })
   );
+
+  app.use(rateLimiter);
 
   app.use(mainRouter);
 
