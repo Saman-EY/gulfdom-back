@@ -14,6 +14,13 @@ const detailValidator = () => [
     .withMessage("phone is required")
     .isMobilePhone("any")
     .withMessage("mobile format is invalid"),
+  body("email")
+    .trim()
+    .notEmpty()
+    .withMessage("Email is required")
+    .isEmail()
+    .withMessage("Invalid email address")
+    .normalizeEmail(),
 ];
 
 module.exports = { detailValidator };
