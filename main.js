@@ -16,7 +16,7 @@ async function main() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
-  const allowedOrigins = ["http://localhost:3001", "http://localhost:3000", "https://gulfdom.ru/"];
+  const allowedOrigins = ["http://localhost:3001", "http://localhost:3000", "https://gulfdom.ru"];
 
   app.use(
     cors({
