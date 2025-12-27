@@ -35,7 +35,7 @@ async function main() {
     })
   );
 
-  app.use( rateLimiter);
+  app.use(rateLimiter);
 
   app.use(mainRouter);
 
