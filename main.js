@@ -35,12 +35,7 @@ async function main() {
     })
   );
 
-  app.use((req, res, next) => {
-    const xForwardedFor = req.headers["x-forwarded-for"];
-    // if (xForwardedFor) return xForwardedFor.split(",")[0].trim();
-    console.log(req.ip, req.headers, xForwardedFor);
-    next();
-  }, rateLimiter);
+  app.use( rateLimiter);
 
   app.use(mainRouter);
 

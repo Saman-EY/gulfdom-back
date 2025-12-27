@@ -7,7 +7,16 @@ export const rateLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   keyGenerator: (req) => {
-    return req.ip; // IMPORTANT
+    // Use the first IP in x-forwarded-for
+    const xff = req.headers["x-forwarded-for"];
+    if (xff) return xff.split(",")[0].trim();
+
+    // fallback to Cloudflare headers
+    if (req.headers["true-client-ip"]) return req.headers["true-client-ip"];
+    if (req.headers["cf-connecting-ip"]) return req.headers["cf-connecting-ip"];
+
+    // fallback to default req.ip
+    return req.ip;
   },
   message: "Too many requests, Wait 2 minutes and try again.",
 });
