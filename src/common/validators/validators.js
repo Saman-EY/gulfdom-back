@@ -21,6 +21,23 @@ const detailValidator = () => [
     .isEmail()
     .withMessage("Invalid email address")
     .normalizeEmail(),
+
+  body("how_he_find")
+    .trim()
+    .notEmpty()
+    .withMessage("how_he_find is required")
+    .isString()
+    .withMessage("how_he_find must be a string")
+    .isLength({ min: 2, max: 30 })
+    .withMessage("how_he_find must be 2–30 characters"),
+
+  body("comment")
+    .optional({ nullable: true })
+    .trim()
+    .isString()
+    .withMessage("comment must be a string")
+    .isLength({ max: 500 })
+    .withMessage("comment must be less than 500 characters"),
 ];
 
 module.exports = { detailValidator };
