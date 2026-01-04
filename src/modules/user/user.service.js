@@ -6,7 +6,7 @@ class UserService {
     autoBind(this);
   }
 
-  async sendDetails({ fullname, phone, email, how_he_find, comment }) {
+  async sendDetails({ fullname, phone, email, how_he_find }) {
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT),
@@ -28,7 +28,6 @@ class UserService {
         <p><strong>User Phone Number:</strong> ${phone}</p>
         <p><strong>User Email:</strong> ${email}</p>
         <p><strong>How User Find GulfDom:</strong> ${how_he_find}</p>
-        <p><strong>User Comment:</strong> ${comment}</p>
       `,
     };
 
