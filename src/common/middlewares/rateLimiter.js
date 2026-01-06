@@ -1,9 +1,9 @@
 import rateLimit from "express-rate-limit";
 
 export const rateLimiter = rateLimit({
-  windowMs: 2 * 60 * 1000, // 2 minutes
+  windowMs:  40 * 1000, // 2 minutes
   // windowMs: 10 * 1000, // 10 secs
-  max: 2, // max 5 requests per IP
+  max: 5, // max 5 requests per IP
   standardHeaders: true,
   legacyHeaders: false,
   keyGenerator: (req) => {
@@ -18,5 +18,5 @@ export const rateLimiter = rateLimit({
     // fallback to default req.ip
     return req.ip;
   },
-  message: "Too many requests, Wait 2 minutes and try again.",
+  message: "Too many requests, Wait 40 seconds and try again.",
 });
